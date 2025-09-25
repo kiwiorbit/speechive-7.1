@@ -1,0 +1,23 @@
+{
+  "name": "Speechive",
+  "short_name": "Speechive",
+  "description": "A creative and engaging mobile app designed for parents and caregivers to support their children with hearing loss or speech delays.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fffbeb",
+  "theme_color": "#fbbf24",
+  "icons": [
+    {
+      "src": "/images/speechive-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/speechive-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

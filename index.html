@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Favicon and App Icons -->
+    <link rel="icon" href="/images/speechive-logo.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/images/speechive-logo.png" />
+    <link rel="manifest" href="/manifest.json" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fbbf24" />
+    
+    <title>Speechive 🐝</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="A creative and engaging mobile app for parents to support children with hearing loss or speech delays through daily strategies and progress tracking." />
+    <meta name="keywords" content="speech therapy, hearing loss, child development, parent coaching, speechive" />
+    
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://speechive.app/" /> <!-- Replace with actual URL when deployed -->
+    <meta property="og:title" content="Speechive 🐝" />
+    <meta property="og:description" content="A creative and engaging mobile app for parents to support children with hearing loss or speech delays." />
+    <meta property="og:image" content="/images/speechive-logo.png" /> <!-- Replace with URL to logo -->
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://speechive.app/" /> <!-- Replace with actual URL when deployed -->
+    <meta property="twitter:title" content="Speechive 🐝" />
+    <meta property="twitter:description" content="A creative and engaging mobile app for parents to support children with hearing loss or speech delays." />
+    <meta property="twitter:image" content="/images/speechive-logo.png" /> <!-- Replace with URL to logo -->
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .animate-fadeIn {
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+      @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+      }
+      .animate-fadeOut {
+        animation: fadeOut 0.5s ease-out forwards;
+      }
+      @keyframes slideUpFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes checkmarkPop {
+        0% { transform: scale(0.5); opacity: 0; }
+        70% { transform: scale(1.2); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+      .checkmark-pop {
+        animation: checkmarkPop 0.3s ease-out forwards;
+      }
+      .strategy-card {
+        opacity: 0;
+        animation: slideUpFadeIn 0.5s ease-out forwards;
+      }
+      .shadow-top-lg {
+        box-shadow: 0 -10px 15px -3px rgb(0 0 0 / 0.1), 0 -4px 6px -4px rgb(0 0 0 / 0.1);
+      }
+      .modal-overlay {
+        animation: fadeIn 0.3s ease-out forwards;
+      }
+      .modal-content {
+        animation: slideUpFadeIn 0.3s ease-out forwards;
+      }
+      @keyframes slideInFromRight {
+        from { transform: translateX(50px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      @keyframes slideInFromLeft {
+        from { transform: translateX(-50px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      .page-transition-enter-right {
+        animation: slideInFromRight 0.4s ease-out forwards;
+      }
+      .page-transition-enter-left {
+        animation: slideInFromLeft 0.4s ease-out forwards;
+      }
+      @keyframes slideInRightSidebar {
+        from {
+          transform: translateX(100%);
+        }
+        to {
+          transform: translateX(0);
+        }
+      }
+      .notification-sidebar-enter {
+        animation: slideInRightSidebar 0.3s ease-out forwards;
+      }
+      @keyframes confetti-fall {
+        0% { transform: translateY(-100%) rotateZ(0deg); opacity: 1; }
+        100% { transform: translateY(100vh) rotateZ(720deg); opacity: 0; }
+      }
+      .confetti-piece {
+        position: absolute;
+        width: 10px;
+        height: 20px;
+        top: 0;
+        opacity: 0;
+        animation: confetti-fall 5s linear infinite;
+      }
+      .day-selector-scrollbar::-webkit-scrollbar {
+        height: 6px;
+      }
+      .day-selector-scrollbar::-webkit-scrollbar-track {
+        background: #fef3c7;
+        border-radius: 3px;
+      }
+      .day-selector-scrollbar::-webkit-scrollbar-thumb {
+        background: #fbbf24;
+        border-radius: 3px;
+      }
+      .day-selector-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #f59e0b;
+      }
+      .hexagon {
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      }
+      @keyframes pulse {
+        0%, 100% {
+          box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+        }
+        50% {
+          box-shadow: 0 0 0 8px rgba(245, 158, 11, 0);
+        }
+      }
+      .floating-timer {
+        position: fixed;
+        bottom: 6rem;
+        right: 1rem;
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: white;
+        padding: 0.5rem;
+        border-radius: 9999px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        animation: fadeIn 0.3s ease-out;
+      }
+      .floating-timer-display {
+        background-color: #f97316;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        font-family: monospace;
+        font-size: 1.125rem;
+        animation: pulse 2s infinite;
+      }
+      .floating-timer-stop {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 9999px;
+        background-color: #ef4444;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s;
+      }
+      .floating-timer-stop:hover {
+        background-color: #dc2626;
+      }
+      .form-group {
+        position: relative;
+      }
+      .form-input {
+        transition: border-color 0.2s ease-in-out;
+        padding-left: 2.5rem;
+      }
+      .form-icon {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ca3af;
+        transition: color 0.2s ease-in-out;
+      }
+      .form-label {
+        position: absolute;
+        left: 2.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: white;
+        padding: 0 0.25rem;
+        color: #6b7280;
+        transition: all 0.2s ease-in-out;
+        pointer-events: none;
+      }
+      .form-input:focus + .form-label,
+      .form-input:not(:placeholder-shown) + .form-label {
+        top: 0;
+        font-size: 0.75rem;
+        color: #f59e0b;
+      }
+       .form-input:focus + .form-label + .form-icon {
+        color: #f59e0b;
+      }
+      @keyframes popIn {
+        0% { opacity: 0; transform: scale(0.8); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+      .animate-popIn {
+        animation: popIn 0.4s ease-out forwards;
+      }
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      .faq-answer.open {
+        max-height: 200px;
+        padding-top: 0.25rem;
+        padding-bottom: 1rem;
+      }
+      .article-content h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: #1f2937;
+      }
+      .article-content p {
+        line-height: 1.75;
+        margin-bottom: 1rem;
+        color: #4b5563;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #fef3c7;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #fbbf24;
+        border-radius: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #f59e0b;
+      }
+      @keyframes pulse-border {
+        0%, 100% { border-color: #fbbf24; }
+        50% { border-color: #f59e0b; }
+      }
+      .animate-pulse-border {
+        animation: pulse-border 2.5s infinite ease-in-out;
+      }
+      @keyframes rocket-launch {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+      }
+      .animate-rocket-launch {
+        animation: rocket-launch 1.5s infinite ease-in-out;
+      }
+      @keyframes buzz-around {
+        0% { transform: translate(0, 0) scale(0.8) rotate(0deg); opacity: 0; }
+        15% { transform: translate(-50px, -80px) scale(1) rotate(-20deg); opacity: 1; }
+        30% { transform: translate(60px, -120px) scale(1) rotate(20deg); }
+        45% { transform: translate(-70px, -50px) scale(1) rotate(-10deg); }
+        60% { transform: translate(40px, -90px) scale(1) rotate(15deg); }
+        75% { transform: translate(-30px, -40px) scale(1) rotate(-5deg); }
+        90% { transform: translate(0, -20px) scale(1) rotate(5deg); }
+        100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+      }
+      @keyframes pulse-bg {
+        0%, 100% {
+          background-color: #fffbeb;
+        }
+        50% {
+          background-color: #fef3c7;
+        }
+      }
+      .honeycomb-background {
+        width: 100vw;
+        height: 100vh;
+        background-color: #fffbeb;
+        animation: pulse-bg 8s infinite ease-in-out;
+        position: relative;
+      }
+      .honeycomb-background::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.05;
+        background-color: transparent;
+        background-image:
+          linear-gradient(30deg, #f59e0b 12%, transparent 12.5%, transparent 87%, #f59e0b 87.5%, #f59e0b),
+          linear-gradient(150deg, #f59e0b 12%, transparent 12.5%, transparent 87%, #f59e0b 87.5%, #f59e0b),
+          linear-gradient(30deg, #f59e0b 12%, transparent 12.5%, transparent 87%, #f59e0b 87.5%, #f59e0b),
+          linear-gradient(150deg, #f59e0b 12%, transparent 12.5%, transparent 87%, #f59e0b 87.5%, #f59e0b),
+          linear-gradient(60deg, #f59e0b 25%, transparent 25.5%, transparent 75%, #f59e0b 75%, #f59e0b),
+          linear-gradient(60deg, #f59e0b 25%, transparent 25.5%, transparent 75%, #f59e0b 75%, #f59e0b);
+        background-size: 60px 105px;
+        background-position: 0 0, 0 0, 30px 52.5px, 30px 52.5px, 0 0, 30px 52.5px;
+      }
+      /* Honey Drop Animation */
+      @keyframes fly-to-jar {
+        0% {
+          transform: translate(var(--start-x), var(--start-y)) scale(1.2);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(var(--end-x), var(--end-y)) scale(0.2);
+          opacity: 0;
+        }
+      }
+      .honey-drop {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: #fbbf24;
+        border-radius: 50% 0 50% 50%;
+        transform: rotate(45deg);
+        box-shadow: 0 0 8px rgba(251, 191, 36, 0.8);
+        animation: fly-to-jar 1s ease-in forwards;
+      }
+       /* Style for the calendar picker icon */
+      input[type="date"]::-webkit-calendar-picker-indicator {
+          cursor: pointer;
+          opacity: 0.8;
+          /* An SVG filter to generate an amber-500 (#f59e0b) color. */
+          filter: invert(68%) sepia(54%) saturate(3080%) hue-rotate(359deg) brightness(98%) contrast(94%);
+          transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out;
+      }
+      input[type="date"]::-webkit-calendar-picker-indicator:hover {
+          opacity: 1;
+      }
+      body.is-exporting * {
+        transition: none !important;
+        animation: none !important;
+      }
+      @media print {
+        body * {
+          visibility: hidden;
+        }
+        #voucher-to-print, #voucher-to-print * {
+          visibility: visible;
+        }
+        #voucher-to-print {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "recharts": "https://aistudiocdn.com/recharts@^3.2.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-gray-100">
+    <div id="root"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
